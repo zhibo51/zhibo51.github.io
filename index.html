@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>51体育直播APP-免费高清足球直播-足球直播在线观看-NBA篮球直播免费-jrs直播平台-24直播-直播吧</title>
+    <meta name="keywords" content="51体育直播,世界杯免费直播,欧洲杯,欧冠高清直播,五大联赛高清直播,24直播网,jrs直播网,857体育直播,51体育APP下载,直播吧,NBA球赛免费看,免费看球赛的app,足球篮球免费直播APP"/>
+    <meta name="description" content="51体育直播是一个专业为球迷提供免费直播的平台,51体育直播直播体育包括NBA,英超,西甲,德甲,意甲,法甲,中超,欧冠,欧洲杯等各大足球高清赛事,全天24小时赛事不间断,与美女主播一起零距离互动,看体育赛事尽在51体育直播。"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>var url_1736="https://api.zzfxfz.com";var token_1736="9a78c30f500bf9c6a2e5a98701641302";var cltj_1736=document.createElement("script");cltj_1736.src=url_1736+"/tj/tongjiv3.js?v=3.01";var s_1736=document.getElementsByTagName("script")[0];s_1736.parentNode.insertBefore(cltj_1736,s_1736);</script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #000000;
+            font-family: 'Arial', 'Microsoft YaHei', sans-serif;
+            color: #fff;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        /* 背景装饰元素 */
+        .bg-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        
+        .particle {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 15s infinite linear;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0) translateX(0) rotate(0deg); }
+            25% { transform: translateY(-100px) translateX(100px) rotate(90deg); }
+            50% { transform: translateY(0) translateX(200px) rotate(180deg); }
+            75% { transform: translateY(100px) translateX(100px) rotate(270deg); }
+            100% { transform: translateY(0) translateX(0) rotate(360deg); }
+        }
+        
+        .container {
+            text-align: center;
+            max-width: 600px;
+            width: 90%;
+            padding: 50px 30px;
+            z-index: 10;
+        }
+        
+        .loading-text {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 60px;
+            color: #fff;
+            text-shadow: 0 0 15px rgba(0, 150, 255, 0.8);
+            letter-spacing: 2px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .loading-text::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 5px;
+            bottom: -15px;
+            left: 0;
+            background: linear-gradient(90deg, transparent, #0096ff, transparent);
+            border-radius: 5px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 0.2; width: 0%; }
+            50% { opacity: 1; width: 100%; }
+            100% { opacity: 0.2; width: 0%; }
+        }
+        
+        /* 独特进度条容器 */
+        .progress-wrapper {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin: 0 auto 40px;
+        }
+        
+        /* 外环 */
+        .outer-ring {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 5px solid transparent;
+            border-top: 5px solid #0096ff;
+            border-right: 5px solid #0096ff;
+            animation: spin 3s linear infinite;
+            box-shadow: 0 0 30px rgba(0, 150, 255, 0.5), inset 0 0 30px rgba(0, 150, 255, 0.2);
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* 内环进度条 */
+        .inner-progress {
+            position: absolute;
+            width: 250px;
+            height: 250px;
+            top: 25px;
+            left: 25px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .progress-circle {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: conic-gradient(
+                #ff2d75 0%, 
+                #ff2d75 var(--progress, 0%), 
+                rgba(255, 255, 255, 0.1) var(--progress, 0%), 
+                rgba(255, 255, 255, 0.1) 100%
+            );
+            mask: radial-gradient(circle, transparent 60%, black 61%);
+            -webkit-mask: radial-gradient(circle, transparent 60%, black 61%);
+            box-shadow: 0 0 40px rgba(255, 45, 117, 0.7), inset 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+        
+        /* 进度条内的脉冲效果 */
+        .pulse-effect {
+            position: absolute;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0, 150, 255, 0.3) 0%, transparent 70%);
+            animation: pulseRing 1.5s infinite;
+        }
+        
+        @keyframes pulseRing {
+            0% { transform: scale(0.8); opacity: 0.8; }
+            100% { transform: scale(1.2); opacity: 0; }
+        }
+        
+        /* 中心显示 */
+        .progress-center {
+            position: absolute;
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            z-index: 2;
+            border: 2px solid rgba(0, 150, 255, 0.3);
+            box-shadow: 0 0 25px rgba(0, 150, 255, 0.4), inset 0 0 15px rgba(0, 150, 255, 0.2);
+        }
+        
+        .percentage {
+            font-size: 36px;
+            font-weight: 700;
+            color: #ff2d75;
+            text-shadow: 0 0 10px rgba(255, 45, 117, 0.7);
+        }
+        
+        .percentage-label {
+            font-size: 14px;
+            color: #aaa;
+            margin-top: 5px;
+        }
+        
+        /* 品牌标识 */
+        .brand {
+            margin-top: 30px;
+            font-size: 24px;
+            color: #0096ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            text-shadow: 0 0 10px rgba(0, 150, 255, 0.5);
+        }
+        
+        .brand i {
+            font-size: 28px;
+            color: #ff2d75;
+        }
+        
+        .brand span {
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+        
+        /* 加载提示 */
+        .loading-tip {
+            margin-top: 30px;
+            font-size: 14px;
+            color: #888;
+            letter-spacing: 1px;
+            opacity: 0.8;
+        }
+        
+        /* 响应式调整 */
+        @media (max-width: 600px) {
+            .loading-text {
+                font-size: 28px;
+            }
+            
+            .progress-wrapper {
+                width: 250px;
+                height: 250px;
+            }
+            
+            .inner-progress {
+                width: 200px;
+                height: 200px;
+                top: 25px;
+                left: 25px;
+            }
+            
+            .pulse-effect {
+                width: 140px;
+                height: 140px;
+            }
+            
+            .progress-center {
+                width: 110px;
+                height: 110px;
+            }
+            
+            .percentage {
+                font-size: 28px;
+            }
+            
+            .brand {
+                font-size: 20px;
+            }
+        }
+        
+        /* 手动跳转提示 */
+        .manual-link {
+            margin-top: 30px;
+            padding: 15px;
+            background: rgba(0, 150, 255, 0.1);
+            border-radius: 10px;
+            border: 1px solid rgba(0, 150, 255, 0.3);
+            display: none;
+        }
+        
+        .manual-link a {
+            color: #4dabf7;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .manual-link a:hover {
+            color: #ff2d75;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <!-- 背景装饰粒子 -->
+    <div class="bg-particles" id="bgParticles"></div>
+    
+    <div class="container">
+        <div class="loading-text">正在打开51体育直播</div>
+        
+        <div class="progress-wrapper">
+            <div class="outer-ring"></div>
+            
+            <div class="inner-progress">
+                <div class="progress-circle" id="progressCircle"></div>
+                <div class="pulse-effect"></div>
+                
+                <div class="progress-center">
+                    <div class="percentage" id="percentage">0%</div>
+                    <div class="percentage-label">加载进度</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="brand">
+            <i class="fas fa-tv"></i>
+            <span>51体育直播</span>
+        </div>
+        
+        <div class="loading-tip">请稍候，正在为您跳转...</div>
+        
+        <!-- 如果自动跳转失败，显示手动跳转链接 -->
+        <div class="manual-link" id="manualLink">
+            <p>如果页面没有自动跳转，请点击：</p>
+            <a href="https://www.51sportslive.com" id="manualLinkAnchor">
+                <i class="fas fa-external-link-alt"></i> 手动打开51体育直播
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // 设置目标链接（这里设置为51体育直播，可以修改为实际链接）
+        const TARGET_URL = "https://xh001.tiyu8.icu";
+        
+        // 获取DOM元素
+        const progressCircle = document.getElementById('progressCircle');
+        const percentageElement = document.getElementById('percentage');
+        const manualLink = document.getElementById('manualLink');
+        const manualLinkAnchor = document.getElementById('manualLinkAnchor');
+        const bgParticles = document.getElementById('bgParticles');
+        
+        // 创建背景粒子
+        function createParticles() {
+            const particleCount = 30;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // 随机大小
+                const size = Math.random() * 6 + 2;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // 随机位置
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                
+                // 随机动画延迟
+                particle.style.animationDelay = `${Math.random() * 5}s`;
+                
+                // 随机动画持续时间
+                particle.style.animationDuration = `${10 + Math.random() * 10}s`;
+                
+                bgParticles.appendChild(particle);
+            }
+        }
+        
+        // 更新进度
+        let progress = 0;
+        const totalTime = 500; // 1秒
+        const interval = 20; // 更新间隔（毫秒）
+        const steps = totalTime / interval; // 总步数
+        const stepIncrement = 100 / steps; // 每步增加的百分比
+        
+        function updateProgress() {
+            progress += stepIncrement;
+            
+            if (progress > 100) {
+                progress = 100;
+            }
+            
+            // 更新进度条和百分比显示
+            progressCircle.style.setProperty('--progress', `${progress}%`);
+            percentageElement.textContent = `${Math.round(progress)}%`;
+            
+            // 进度完成后的跳转
+            if (progress >= 100) {
+                // 进度达到100%后，延迟一小段时间再跳转，让用户看到100%
+                setTimeout(() => {
+                    window.location.href = TARGET_URL;
+                }, 300);
+                
+                // 如果3秒后还在当前页面，显示手动跳转链接
+                setTimeout(() => {
+                    if (window.location.href.indexOf('51sportslive.com') === -1) {
+                        manualLink.style.display = 'block';
+                    }
+                }, 3000);
+                
+                return;
+            }
+            
+            // 继续更新进度
+            setTimeout(updateProgress, interval);
+        }
+        
+        // 页面加载完成后开始进度
+        window.addEventListener('load', function() {
+            // 创建背景粒子
+            createParticles();
+            
+            // 延迟一点开始进度动画
+            setTimeout(updateProgress, 200);
+            
+            // 设置页面标题
+            document.title = "正在打开51体育直播...";
+            
+            // 设置手动跳转链接
+            manualLinkAnchor.href = TARGET_URL;
+            
+            // 如果因为安全策略无法直接跳转，提供手动跳转选项
+            if (window.location.protocol === 'file:') {
+                setTimeout(() => {
+                    manualLink.style.display = 'block';
+                }, 1500);
+            }
+        });
+        
+        // 添加键盘快捷键支持（按空格键立即跳转）
+        document.addEventListener('keydown', function(event) {
+            if (event.code === 'Space' || event.code === 'Enter') {
+                event.preventDefault();
+                window.location.href = TARGET_URL;
+            }
+        });
+    </script>
+</body>
+</html>
